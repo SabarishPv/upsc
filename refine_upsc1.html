@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPSC Mastery Guide - A Comprehensive Resource</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Root Variables & Modern Design System --- */
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #06b6d4;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --background-color: #0f0f23;
+            --surface-color: #1a1a2e;
+            --surface-light: #16213e;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-large: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--surface-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            font-family: 'Playfair Display', serif;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        h2 { 
+            font-size: clamp(2rem, 4vw, 3rem); 
+            color: var(--text-color);
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        h3 { 
+            font-size: 1.5rem; 
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        p { 
+            color: var(--text-muted); 
+            margin-bottom: 1.5rem; 
+            font-size: 1.1rem;
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--header-height);
+            transition: all 0.3s ease;
+        }
+
+        .main-header.scrolled {
+            background: rgba(15, 15, 35, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .main-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .main-nav a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-primary);
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .main-nav a.active,
+        .main-nav a:hover {
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+
+        .main-nav a.active::before,
+        .main-nav a:hover::before {
+            opacity: 1;
+        }
+
+        /* --- Page Content Styling --- */
+        .page {
+            display: none;
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 4rem;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+            animation: pageSlideIn 0.6s ease-out forwards;
+        }
+
+        @keyframes pageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Hero Section (Home Page) --- */
+        .hero {
+            text-align: center;
+            padding: 6rem 0 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            margin-bottom: 2rem;
+            animation: heroTitleSlide 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 2rem auto;
+            animation: heroSubtitleSlide 1s ease-out 0.3s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-large);
+            border-color: var(--primary-color);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .card h3 {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* --- Content Components --- */
+        .content-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .content-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-box h3::before {
+            content: '✨';
+            font-size: 1.2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--surface-light);
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        li::marker {
+            color: var(--primary-color);
+        }
+
+        li strong {
+            color: var(--text-color);
+        }
+
+        /* --- Enhanced Chat Assistant --- */
+        .chat-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            height: 65vh;
+            box-shadow: var(--shadow-large);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: var(--gradient-primary);
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .chat-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .chat-window {
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: linear-gradient(135deg, var(--surface-color) 0%, var(--surface-light) 100%);
+        }
+
+        .message { 
+            margin-bottom: 1.5rem; 
+            display: flex; 
+            flex-direction: column;
+            animation: messageSlideIn 0.4s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message .bubble { 
+            padding: 1rem 1.5rem; 
+            border-radius: 20px; 
+            max-width: 85%; 
+            line-height: 1.6;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .user-message { 
+            align-items: flex-end; 
+        }
+
+        .user-message .bubble { 
+            background: var(--gradient-primary); 
+            color: white; 
+            border-bottom-right-radius: 8px; 
+        }
+
+        .gemini-message { 
+            align-items: flex-start; 
+        }
+
+        .gemini-message .bubble { 
+            background: var(--surface-light); 
+            color: var(--text-color); 
+            border-bottom-left-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .chat-input { 
+            display: flex; 
+            padding: 1.5rem; 
+            border-top: 1px solid var(--border-color);
+            background: var(--surface-light);
+            gap: 1rem;
+        }
+
+        #user-input { 
+            flex-grow: 1; 
+            padding: 1rem 1.5rem; 
+            border: 1px solid var(--border-color); 
+            border-radius: 50px; 
+            background: var(--surface-color); 
+            outline: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #user-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        #send-btn { 
+            padding: 1rem 2rem; 
+            border: none; 
+            background: var(--gradient-primary); 
+            color: white; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        #send-btn:hover { 
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* --- Animations --- */
+        .animated {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .animate-fade-in { 
+            transform: translateY(40px); 
+        }
+        .animate-slide-in-left { 
+            transform: translateX(-60px); 
+        }
+        .animate-slide-in-right { 
+            transform: translateX(60px); 
+        }
+
+        .animated.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        @keyframes heroTitleSlide {
+            from { 
+                opacity: 0; 
+                transform: translateY(-30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes heroSubtitleSlide {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .main-footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .main-header .container { 
+                flex-direction: column; 
+                height: auto; 
+                padding: 1rem; 
+                gap: 1rem;
+            }
+
+            .main-nav ul { 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 0.25rem;
+            }
+
+            .main-nav a { 
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page { 
+                padding-top: 140px; 
+            }
+
+            .hero { 
+                padding: 3rem 0 2rem; 
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .content-box {
+                padding: 2rem;
+            }
+
+            .chat-container {
+                margin: 1rem;
+                height: 60vh;
+            }
+        }
+
+        /* --- Floating particles background --- */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="particles" id="particles"></div>
+
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <a href="#" class="logo" data-page="home-page">UPSC Guide</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home-page">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="syllabus-page">Syllabus</a></li>
+                    <li><a href="#" class="nav-link" data-page="strategy-page">Strategy</a></li>
+                    <li><a href="#" class="nav-link" data-page="booklist-page">Resources</a></li>
+                    <li><a href="#" class="nav-link" data-page="current-affairs-page">Current Affairs</a></li>
+                    <li><a href="#" class="nav-link" data-page="answer-writing-page">Writing</a></li>
+                    <li><a href="#" class="nav-link" data-page="gemini-page">AI Assistant</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <!-- HOME PAGE -->
+        <section id="home-page" class="page active">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Master the Civil Services Exam</h1>
+                        <p>A comprehensive, modern guide to help you navigate every stage of UPSC CSE preparation with confidence and strategic precision.</p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Exam Stages</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">9</div>
+                                <div class="stat-label">Mains Papers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1000+</div>
+                                <div class="stat-label">Hours of Study</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card animated animate-fade-in" data-page="syllabus-page">
+                        <div class="card-icon">📋</div>
+                        <h3>Syllabus & Pattern</h3>
+                        <p>Comprehensive breakdown of Prelims and Mains examination structure with detailed subject-wise coverage and marking schemes.</p>
+                    </div>
+                    <div class="card animated animate-fade-in" data-page="strategy-page">
+                        <div class="card-icon">🎯</div>
+                        <h3>Strategy & Planning</h3>
+                        <p>Master the art of strategic preparation with proven methodologies for time management, study planning, and consistent progress.</p>
+                    </div>
+                    <div class="card animated animate-fade-in" data-page="booklist-page">
+                        <div class="card-icon">📚</div>
+                        <h3>Booklist & Resources</h3>
+                        <p>Curated collection of the most effective books and resources, carefully selected and organized by subject experts.</p>
+                    </div>
+                    <div class="card animated animate-fade-in" data-page="current-affairs-page">
+                        <div class="card-icon">🌍</div>
+                        <h3>Current Affairs Mastery</h3>
+                        <p>Stay updated with systematic current affairs preparation techniques and reliable source recommendations.</p>
+                    </div>
+                    <div class="card animated animate-fade-in" data-page="answer-writing-page">
+                        <div class="card-icon">✍️</div>
+                        <h3>Answer Writing Excellence</h3>
+                        <p>Perfect your answer writing skills with structured approaches, formatting techniques, and evaluation methods.</p>
+                    </div>
+                    <div class="card animated animate-fade-in" data-page="gemini-page">
+                        <div class="card-icon">🤖</div>
+                        <h3>AI Study Assistant</h3>
+                        <p>Get instant guidance on preparation strategies, doubt resolution, and personalized study recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYLLABUS & PATTERN PAGE -->
+        <section id="syllabus-page" class="page">
+            <div class="container">
+                <h2 class="animated animate-slide-in-left">Exam Pattern & Syllabus</h2>
+                <div class="content-box animated animate-fade-in">
+                    <h3>The Three Stages of Examination</h3>
+                    <p>The UPSC Civil Services Examination is a rigorous three-tiered process designed to select the best candidates for the country's premier administrative services.</p>
+                    <ol>
+                        <li><strong>Stage I: Preliminary Examination (Prelims)</strong> - An objective-type screening test to select candidates for the Main Examination.</li>
+                        <li><strong>Stage II: Main Examination (Mains)</strong> - A descriptive written examination to assess the academic depth and intellectual traits of the candidates.</li>
+                        <li><strong>Stage III: Personality Test (Interview)</strong> - A personal interview to evaluate the candidate's suitability for a career in public service.</li>
+                    </ol>
+                </div>
+                <div class="content-box animated animate-fade-in">
+                    <h3>Preliminary Exam Pattern</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Paper</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Duration</th>
+                                <th>Nature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Paper I</td>
+                                <td>General Studies</td>
+                                <td>200</td>
+                                <td>2 Hours</td>
+                                <td>Marks counted for cutoff</td>
+                            </tr>
+                            <tr>
+                                <td>Paper II</td>
+                                <td>CSAT (Aptitude Test)</td>
+                                <td>200</td>
+                                <td>2 Hours</td>
+                                <td>Qualifying (33% required)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <div class="content-box animated animate-fade-in">
+                    <h3>Main Exam Pattern</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Paper</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Nature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Paper A</td>
+                                <td>Compulsory Indian Language</td>
+                                <td>300</td>
+                                <td>Qualifying</td>
+                            </tr>
+                            <tr>
+                                <td>Paper B</td>
+                                <td>English Language</td>
+                                <td>300</td>
+                                <td>Qualifying</td>
+                            </tr>
+                            <tr>
+                                <td>Paper I</td>
+                                <td>Essay</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                             <tr>
+                                <td>Paper II</td>
+                                <td>General Studies I (Heritage, History, Geography)</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                             <tr>
+                                <td>Paper III</td>
+                                <td>General Studies II (Governance, Polity, Social Justice, IR)</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                             <tr>
+                                <td>Paper IV</td>
+                                <td>General Studies III (Technology, Economy, Environment)</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                             <tr>
+                                <td>Paper V</td>
+                                <td>General Studies IV (Ethics, Integrity, Aptitude)</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                             <tr>
+                                <td>Paper VI</td>
+                                <td>Optional Subject Paper 1</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                             <tr>
+                                <td>Paper VII</td>
+                                <td>Optional Subject Paper 2</td>
+                                <td>250</td>
+                                <td>Merit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRATEGY PAGE -->
+        <section id="strategy-page" class="page">
+            <div class="container">
+                <h2 class="animated animate-slide-in-left">A Winning Strategy</h2>
+                <div class="content-box animated animate-fade-in">
+                    <h3>Phase 1: Building the Foundation (First 3-4 Months)</h3>
+                    <ul>
+                        <li><strong>Master the Basics:</strong> Thoroughly read NCERT textbooks from Class 6 to 12 for all relevant subjects. This is non-negotiable.</li>
+                        <li><strong>Understand the Syllabus:</strong> Keep a printed copy of the syllabus and analyze it deeply. Connect every topic you study back to the syllabus.</li>
+                        <li><strong>Newspaper Habit:</strong> Start reading one national newspaper (The Hindu/The Indian Express) daily without fail. Focus on editorial and national/international news.</li>
+                    </ul>
+                </div>
+                <div class="content-box animated animate-fade-in">
+                    <h3>Phase 2: Core Study & Consolidation (Next 6-8 Months)</h3>
+                    <ul>
+                        <li><strong>Standard Books:</strong> Move to standard reference books for each subject after completing NCERTs.</li>
+                        <li><strong>Optional Subject:</strong> Choose your optional subject wisely and aim to complete at least 70% of its syllabus during this phase.</li>
+                        <li><strong>Note Making:</strong> Develop a system for making concise, revision-friendly notes. This could be digital (Evernote, OneNote) or physical.</li>
+                        <li><strong>Answer Writing:</strong> Start practicing answer writing. Begin with 1-2 questions daily based on what you've studied.</li>
+                    </ul>
+                </div>
+                <div class="content-box animated animate-fade-in">
+                    <h3>Phase 3: Revision & Practice (Last 3-4 Months before Prelims)</h3>
+                    <ul>
+                        <li><strong>Intensive Revision:</strong> Shift focus completely to revision. Aim for at least 3-4 revisions of all core subjects.</li>
+                        <li><strong>Mock Tests:</strong> Take mock tests religiously. Start with sectional tests and move to full-length tests. Analyze every test to identify weak areas.</li>
+                        <li><strong>Current Affairs Consolidation:</strong> Revise your compiled current affairs notes and use a yearly compilation for gap-filling.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOOKLIST PAGE -->
+        <section id="booklist-page" class="page">
+            <div class="container">
+                <h2 class="animated animate-slide-in-left">Curated Booklist & Resources</h2>
+                <p class="animated animate-slide-in-right">Start every subject with its respective NCERTs before moving to these standard books.</p>
+                <div class="content-box animated animate-fade-in">
+                    <h3>History</h3>
+                    <ul>
+                        <li><strong>Ancient:</strong> R.S. Sharma's 'India's Ancient Past' (Old NCERT)</li>
+                        <li><strong>Medieval:</strong> Satish Chandra's 'History of Medieval India' (Old NCERT)</li>
+                        <li><strong>Modern:</strong> 'A Brief History of Modern India' by Spectrum Publications</li>
+                        <li><strong>Art & Culture:</strong> 'Indian Art and Culture' by Nitin Singhania</li>
+                    </ul>
+                </div>
+                 <div class="content-box animated animate-fade-in">
+                    <h3>Polity & Governance</h3>
+                    <ul>
+                        <li><strong>Core Book:</strong> 'Indian Polity' by M. Laxmikanth (The Bible for Polity)</li>
+                        <li><strong>Reference:</strong> 'Introduction to the Constitution of India' by D.D. Basu</li>
+                        <li><strong>Websites:</strong> PRS Legislative Research for tracking bills and acts.</li>
+                    </ul>
+                </div>
+                 <div class="content-box animated animate-fade-in">
+                    <h3>Economy</h3>
+                    <ul>
+                        <li><strong>Core Book:</strong> 'Indian Economy' by Ramesh Singh or Nitin Singhania</li>
+                        <li><strong>Must-Read Documents:</strong> The annual Economic Survey and Union Budget.</li>
+                        <li><strong>Conceptual Clarity:</strong> Mrunal Patel's lectures/notes are highly recommended.</li>
+                    </ul>
+                </div>
+                 <div class="content-box animated animate-fade-in">
+                    <h3>Geography & Environment</h3>
+                    <ul>
+                        <li><strong>Geography:</strong> 'Certificate Physical and Human Geography' by G.C. Leong, and Class 11/12 NCERTs.</li>
+                        <li><strong>Atlas:</strong> Oxford Student Atlas is mandatory.</li>
+                        <li><strong>Environment:</strong> 'Environment' by Shankar IAS Academy.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CURRENT AFFAIRS PAGE -->
+        <section id="current-affairs-page" class="page">
+             <div class="container">
+                <h2 class="animated animate-slide-in-left">Mastering Current Affairs</h2>
+                <div class="content-box animated animate-fade-in">
+                    <h3>Why Are They Important?</h3>
+                    <p>Current affairs are the backbone of the UPSC exam. They are not a separate subject but are deeply integrated into every GS paper, the Essay, and even the Interview. A strong grasp demonstrates awareness and analytical ability.</p>
+                </div>
+                <div class="content-box animated animate-fade-in">
+                    <h3>The Holy Trinity of Sources</h3>
+                    <ol>
+                        <li><strong>Daily Newspaper:</strong> Read The Hindu or The Indian Express every day. Focus on understanding the 'Why' and 'How' behind the news, not just the 'What'. Pay special attention to the editorial and explained sections.</li>
+                        <li><strong>Monthly Magazine:</strong> Follow one comprehensive monthly current affairs magazine (e.g., Vision IAS, Insights on India). This helps in consolidating news from the entire month in a structured format.</li>
+                        <li><strong>Government Publications:</strong> Regularly follow websites like PIB (Press Information Bureau) for authentic government updates and Yojana/Kurukshetra magazines for in-depth analysis of government policies.</li>
+                    </ol>
+                </div>
+                <div class="content-box animated animate-fade-in">
+                    <h3>Effective Note-Making Strategy</h3>
+                    <ul>
+                        <li><strong>Syllabus-wise Segregation:</strong> Don't make notes chronologically. Create separate sections in your notebook/digital notes for each GS paper topic (e.g., Polity, IR, Economy, Environment).</li>
+                        <li><strong>The 3 C's Rule:</strong> Your notes should be Crisp, Clear, and Concise. Use bullet points, keywords, and mind maps.</li>
+                        <li><strong>Connect Static with Dynamic:</strong> Whenever you read a current event, try to link it to the static part of the syllabus. For example, if the Governor's role is in the news, revise the 'Governor' chapter from Laxmikanth.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANSWER WRITING PAGE -->
+        <section id="answer-writing-page" class="page">
+            <div class="container">
+                <h2 class="animated animate-slide-in-left">The Art of Answer Writing</h2>
+                <div class="content-box animated animate-fade-in">
+                    <h3>The Structure of a Perfect Answer</h3>
+                    <p>A high-scoring answer is not just about content; it's about presentation and structure. Every answer should ideally have three parts:</p>
+                    <ul>
+                        <li><strong>Introduction (2-3 lines):</strong> Briefly introduce the core topic of the question. You can start with a definition, a fact, a recent context, or a report's finding.</li>
+                        <li><strong>Body (The Main Part):</strong> This is where you address the demand of the question. Break it down into sub-headings and use bullet points to make it readable. Use facts, data, examples, and committee recommendations to substantiate your points.</li>
+                        <li><strong>Conclusion (2-3 lines):</strong> Summarize your answer and provide a balanced, forward-looking, and optimistic conclusion. Suggest a way forward.</li>
+                    </ul>
+                </div>
+                <div class="content-box animated animate-fade-in">
+                    <h3>How to Practice and Improve</h3>
+                    <ul>
+                        <li><strong>Start Early, Start Small:</strong> Don't wait to finish the syllabus. Start writing one answer daily based on the topic you studied that day.</li>
+                        <li><strong>Analyze Topper's Copies:</strong> Look at the answer copies of previous year's toppers to understand how they structure their answers, draw diagrams, and present their content.</li>
+                        <li><strong>Focus on Keywords:</strong> Pay close attention to keywords in the question like "Discuss," "Critically Analyze," "Elucidate," and "Examine." Each keyword demands a different approach.</li>
+                        <li><strong>Peer and Mentor Review:</strong> Get your answers reviewed by peers or a mentor to get constructive feedback on your structure, content, and language.</li>
+                        <li><strong>Practice in Timed Conditions:</strong> As you get closer to the exam, practice writing answers in a timed environment to simulate exam conditions and improve your speed.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- GEMINI ASSISTANT PAGE -->
+        <section id="gemini-page" class="page">
+            <div class="container">
+                <h2 class="animated animate-slide-in-left" style="text-align: center;">UPSC AI Assistant</h2>
+                <p class="animated animate-slide-in-right" style="text-align: center;">Have a doubt? Ask the AI assistant. Get quick, simulated answers to your preparation questions.</p>
+                <div class="chat-container animated animate-fade-in">
+                    <div class="chat-header">
+                        <h3>Gemini Study Companion</h3>
+                    </div>
+                    <div class="chat-window" id="chat-window">
+                        <div class="message gemini-message">
+                            <div class="bubble">Hello! I am your AI-powered UPSC guide. Ask me about strategy, booklists, or time management.</div>
+                        </div>
+                    </div>
+                    <form class="chat-input" id="chat-form">
+                        <input type="text" id="user-input" placeholder="Type your question here..." autocomplete="off">
+                        <button type="submit" id="send-btn">Send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 UPSC Mastery Guide. A comprehensive resource for every aspirant.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link, .logo, .card');
+            const pages = document.querySelectorAll('.page');
+            const header = document.getElementById('main-header');
+            const progressBar = document.getElementById('progress-bar');
+
+            // --- Header Scroll Effect ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // --- Progress Bar ---
+                const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / scrollTotal) * 100;
+                progressBar.style.width = `${scrolled}%`;
+            });
+
+            // --- Page Navigation Logic ---
+            function switchPage(pageId) {
+                pages.forEach(page => page.classList.remove('active'));
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+                const targetPage = document.getElementById(pageId);
+                const targetLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+                
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    window.scrollTo(0, 0);
+                }
+                if (targetLink) {
+                    targetLink.classList.add('active');
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    if(pageId) switchPage(pageId);
+                });
+            });
+
+            // --- On-Scroll Animation Logic ---
+            const animatedElements = document.querySelectorAll('.animated');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- Gemini API Chat Simulation ---
+            const chatForm = document.getElementById('chat-form');
+            const userInput = document.getElementById('user-input');
+            const chatWindow = document.getElementById('chat-window');
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const userMessage = userInput.value.trim();
+                if (userMessage === '') return;
+
+                displayUserMessage(userMessage);
+                userInput.value = '';
+                
+                setTimeout(() => {
+                    const geminiResponse = getSimulatedGeminiResponse(userMessage);
+                    displayGeminiMessage(geminiResponse);
+                }, 1200);
+            });
+
+            function displayUserMessage(message) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', 'user-message');
+                messageElement.innerHTML = `<div class="bubble">${message}</div>`;
+                chatWindow.appendChild(messageElement);
+                scrollToBottom();
+            }
+
+            function displayGeminiMessage(message) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', 'gemini-message');
+                messageElement.innerHTML = `<div class="bubble">${message}</div>`;
+                chatWindow.appendChild(messageElement);
+                scrollToBottom();
+            }
+
+            function scrollToBottom() {
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function getSimulatedGeminiResponse(query) {
+                const lowerCaseQuery = query.toLowerCase();
+                if (lowerCaseQuery.includes("strategy") || lowerCaseQuery.includes("how to start")) {
+                    return "A solid strategy involves three phases: 1) Building a foundation with NCERTs, 2) Core study with standard books and optional preparation, and 3) Intensive revision and mock tests before the exam.";
+                } else if (lowerCaseQuery.includes("book") || lowerCaseQuery.includes("resources")) {
+                    return "For Polity, M. Laxmikanth is essential. For Modern History, Spectrum is great. For Economy, Ramesh Singh or Nitin Singhania are good choices. Always start with NCERTs for every subject to build a strong base.";
+                } else if (lowerCaseQuery.includes("time management") || lowerCaseQuery.includes("schedule")) {
+                    return "Create a realistic daily schedule that mixes study with breaks. Aim for 8-9 hours of focused study. The Pomodoro Technique (25 mins study, 5 mins break) can be very effective for maintaining concentration.";
+                } else if (lowerCaseQuery.includes("current affairs")) {
+                    return "The best approach is to read one national newspaper daily (like The Hindu), supplement it with a monthly magazine compilation, and refer to PIB for official updates.";
+                } else if (lowerCaseQuery.includes("answer writing")) {
+                    return "A good answer needs a clear introduction, a well-structured body with sub-headings and points, and a forward-looking conclusion. Start practicing early, even if it's just one answer a day.";
+                } else if (lowerCaseQuery.includes("hello") || lowerCaseQuery.includes("hi")) {
+                    return "Hello! How can I assist with your UPSC preparation today?";
+                } else {
+                    return "That's an insightful question. To answer it effectively in the exam, you should link the static concepts with relevant current events, provide balanced viewpoints, and conclude with a constructive suggestion.";
+                }
+            }
+
+            // --- Floating Particles ---
+            const particlesContainer = document.getElementById('particles');
+            const numParticles = 30;
+            for (let i = 0; i < numParticles; i++) {
+                let particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 15}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                const size = `${Math.random() * 3 + 1}px`;
+                particle.style.width = size;
+                particle.style.height = size;
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>
